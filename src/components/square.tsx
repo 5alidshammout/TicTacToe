@@ -12,7 +12,7 @@ function Square({ index }: props) {
           (row !== 1 ? "border-l-4 " : "") +
           (row !== 3 ? "border-r-4 " : "") +
           (col !== 1 ? "border-t-4 " : "") +
-          (col !== 3 ? "border-b-4" : "")
+          (col !== 3 ? "border-b-4 " : "")
         }
       ></div>
     </>

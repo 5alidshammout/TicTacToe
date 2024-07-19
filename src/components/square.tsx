@@ -1,8 +1,11 @@
+import { MouseEvent } from "react";
+
 interface props {
   index: number;
+  selected: (e: MouseEvent) => void;
 }
 
-function Square({ index }: props) {
+function Square({ index, selected }: props) {
   let [row, col] = [(index % 3) + 1, Math.floor(index / 3) + 1];
   return (
     <>
@@ -14,6 +17,7 @@ function Square({ index }: props) {
           (col !== 1 ? "border-t-4 " : "") +
           (col !== 3 ? "border-b-4 " : "")
         }
+        onClick={(e) => selected(e)}
       ></div>
     </>
   );

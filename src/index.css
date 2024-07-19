@@ -19,5 +19,5 @@ body {
 
 #root {
   height: 100%;
-  @apply flex justify-center items-center;
+  @apply flex justify-center items-center flex-col;
 }

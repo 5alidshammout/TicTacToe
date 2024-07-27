@@ -16,9 +16,9 @@ function Square({ index, selected, player }: props) {
           (col !== 1 ? "border-t-4 " : "") +
           (col !== 3 ? "border-b-4 " : "")
         }
-        onClick={_ => selected()}
+        onClick={(_) => selected()}
       >
-        <h1 className="text-slate-400 bg-red-700">{player}</h1>
+        <h1 className="text-slate-400">{player}</h1>
       </div>
     </>
   );

@@ -17,7 +17,11 @@ function placeSign(
   let tmp = [...Squares];
   tmp[i] = turn;
   setSquares(tmp);
-  setTurn(players[Math.abs(players.indexOf(turn) - 1)]);
+  if (tmp.some((x) => x === "")) {
+    setTurn(players[Math.abs(players.indexOf(turn) - 1)]);
+  } else {
+    setTurn("");
+  }
 }
 
 function App() {
@@ -26,13 +30,15 @@ function App() {
 
   return (
     <>
-      <h1 className="text-slate-400 font-black text-xl">It's {turn} turn</h1>
+      <h1 className="text-slate-400 font-black text-xl">
+        {turn === "" ? "Game over" : `It's ${turn} turn`}
+      </h1>
       <div id="board" className="grid grid-cols-3 grid-rows-3">
         {squares.map((val, i) => (
           <Square
             key={i}
             index={i}
-            player={val as ""|"O"|"X"}
+            player={val as "" | "O" | "X"}
             selected={() =>
               placeSign(i, val, turn, setTurn, squares, setSquares)
             }

@@ -6,6 +6,7 @@
   -webkit-user-select: none;
   user-select: none;
   @apply m-0 p-0;
+  font-family: "Cascadia Code SemiBold";
 }
 
 html {

@@ -1,8 +1,6 @@
-import { MouseEvent } from "react";
-
 interface props {
   index: number;
-  selected: (e: MouseEvent) => void;
+  selected: () => void;
   player: "O" | "X" | "";
 }
 
@@ -18,9 +16,9 @@ function Square({ index, selected, player }: props) {
           (col !== 1 ? "border-t-4 " : "") +
           (col !== 3 ? "border-b-4 " : "")
         }
-        onClick={(e) => selected(e)}
+        onClick={_ => selected()}
       >
-        <h1>{player}</h1>
+        <h1 className="text-slate-400 bg-red-700">{player}</h1>
       </div>
     </>
   );

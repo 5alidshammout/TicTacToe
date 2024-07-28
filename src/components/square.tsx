@@ -1,20 +1,20 @@
 interface props {
-  index: number;
+  rowi: number;
+  coli: number;
   selected: () => void;
   player: "O" | "X" | "";
 }
 
-function Square({ index, selected, player }: props) {
-  let [row, col] = [(index % 3) + 1, Math.floor(index / 3) + 1];
+function Square({ rowi, coli, selected, player }: props) {
   return (
     <>
       <div
         className={
           "size-20 border-slate-400 flex items-center justify-center text-4xl " +
-          (row !== 1 ? "border-l-4 " : "") +
-          (row !== 3 ? "border-r-4 " : "") +
-          (col !== 1 ? "border-t-4 " : "") +
-          (col !== 3 ? "border-b-4 " : "")
+          (coli !== 0 ? "border-l-4 " : "") +
+          (coli !== 2 ? "border-r-4 " : "") +
+          (rowi !== 0 ? "border-t-4 " : "") +
+          (rowi !== 2 ? "border-b-4 " : "")
         }
         onClick={(_) => selected()}
       >

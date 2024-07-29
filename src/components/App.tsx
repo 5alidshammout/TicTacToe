@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Square from "./square";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 let players = ["O", "X"];
 
@@ -68,6 +70,7 @@ function App() {
   const [squares, setSquares] = useState<string[][]>(
     Array(3).fill(Array(3).fill(""))
   );
+  const { width, height } = useWindowSize();
 
   return (
     <>
@@ -93,6 +96,9 @@ function App() {
           ))
         )}
       </div>
+      {turn[0] === "-" && (
+        <Confetti width={width} height={height} numberOfPieces={100} />
+      )}
     </>
   );
 }

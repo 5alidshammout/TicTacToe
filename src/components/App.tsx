@@ -2,6 +2,7 @@ import { useState } from "react";
 import Square from "./square";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
+import PlayAgain from "./playAgain";
 
 let players = ["O", "X"];
 
@@ -51,7 +52,6 @@ function placeSign(
   tmp[rowi][coli] = turn;
   setSquares(tmp);
 
-  console.log(rowi, coli, turn, tmp);
   let winner = checkWinner(rowi, coli, turn, tmp);
 
   if (winner !== "") {
@@ -74,14 +74,14 @@ function App() {
 
   return (
     <>
-      <h1 className="text-slate-400 font-black text-xl">
+      <h1 className="text-slate-400 font-black text-3xl">
         {turn === ""
           ? "Game over"
           : turn[0] === "-"
           ? `${turn[1]} WON!`
           : `It's ${turn} turn`}
       </h1>
-      <div id="board" className="grid grid-cols-3 grid-rows-3">
+      <div id="board" className="grid grid-cols-3 grid-rows-3 my-6">
         {squares.map((row, rowi) =>
           row.map((val, coli) => (
             <Square
@@ -98,6 +98,14 @@ function App() {
       </div>
       {turn[0] === "-" && (
         <Confetti width={width} height={height} numberOfPieces={100} />
+      )}
+      {(turn[0] === "-" || turn === "") && (
+        <PlayAgain
+          fn={() => {
+            setTurn("X");
+            setSquares(Array(3).fill(Array(3).fill("")));
+          }}
+        />
       )}
     </>
   );

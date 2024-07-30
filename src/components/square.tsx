@@ -14,7 +14,11 @@ function Square({ rowi, coli, selected, player }: props) {
           (coli !== 0 ? "border-l-4 " : "") +
           (coli !== 2 ? "border-r-4 " : "") +
           (rowi !== 0 ? "border-t-4 " : "") +
-          (rowi !== 2 ? "border-b-4 " : "")
+          (rowi !== 2 ? "border-b-4 " : "") +
+          (coli === 0 ? "rounded-l-2xl " : "") +
+          (rowi === 0 ? "rounded-t-2xl " : "") +
+          (coli === 2 ? "rounded-r-2xl " : "") +
+          (rowi === 2 ? "rounded-b-2xl " : "")
         }
         onClick={(_) => selected()}
       >

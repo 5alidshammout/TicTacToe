@@ -1,10 +1,10 @@
-import { useState } from "react";
-import Square from "./square";
-import useWindowSize from "react-use/lib/useWindowSize";
-import Confetti from "react-confetti";
-import PlayAgain from "./playAgain";
+import { useState } from 'react';
+import Square from './square';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
+import PlayAgain from './playAgain';
 
-let players = ["O", "X"];
+let players = ['O', 'X'];
 
 function checkWinner(
   rowi: number,
@@ -33,7 +33,7 @@ function checkWinner(
       return turn;
     }
   }
-  return "";
+  return '';
 }
 
 function placeSign(
@@ -45,7 +45,7 @@ function placeSign(
   Squares: string[][],
   setSquares: React.Dispatch<React.SetStateAction<string[][]>>
 ) {
-  if (val !== "" || turn[0] === "-") {
+  if (val !== '' || turn[0] === '-') {
     return;
   }
   let tmp = Squares.map((r) => [...r]);
@@ -54,41 +54,41 @@ function placeSign(
 
   let winner = checkWinner(rowi, coli, turn, tmp);
 
-  if (winner !== "") {
+  if (winner !== '') {
     setTurn(`-${turn}`);
   } else {
-    if (tmp.some((x) => x.some((y) => y === ""))) {
+    if (tmp.some((x) => x.some((y) => y === ''))) {
       setTurn(players[Math.abs(players.indexOf(turn) - 1)]);
     } else {
-      setTurn("");
+      setTurn('');
     }
   }
 }
 
 function App() {
-  const [turn, setTurn] = useState("X");
+  const [turn, setTurn] = useState('X');
   const [squares, setSquares] = useState<string[][]>(
-    Array(3).fill(Array(3).fill(""))
+    Array(3).fill(Array(3).fill(''))
   );
   const { width, height } = useWindowSize();
 
   return (
     <>
-      <h1 className="text-slate-400 font-black text-3xl">
-        {turn === ""
-          ? "Game over"
-          : turn[0] === "-"
+      <h1 className='text-slate-400 font-black text-3xl'>
+        {turn === ''
+          ? 'Game over'
+          : turn[0] === '-'
           ? `${turn[1]} WON!`
           : `It's ${turn} turn`}
       </h1>
-      <div id="board" className="grid grid-cols-3 grid-rows-3 my-6">
+      <div id='board' className='grid grid-cols-3 grid-rows-3 my-6'>
         {squares.map((row, rowi) =>
           row.map((val, coli) => (
             <Square
               key={rowi * 3 + coli}
               rowi={rowi}
               coli={coli}
-              player={val as "" | "O" | "X"}
+              player={val as '' | 'O' | 'X'}
               selected={() =>
                 placeSign(coli, rowi, val, turn, setTurn, squares, setSquares)
               }
@@ -96,14 +96,14 @@ function App() {
           ))
         )}
       </div>
-      {turn[0] === "-" && (
+      {turn[0] === '-' && (
         <Confetti width={width} height={height} numberOfPieces={100} />
       )}
-      {(turn[0] === "-" || turn === "") && (
+      {(turn[0] === '-' || turn === '') && (
         <PlayAgain
           fn={() => {
-            setTurn("X");
-            setSquares(Array(3).fill(Array(3).fill("")));
+            setTurn('X');
+            setSquares(Array(3).fill(Array(3).fill('')));
           }}
         />
       )}

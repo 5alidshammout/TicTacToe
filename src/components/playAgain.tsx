@@ -8,5 +8,4 @@ function PlayAgain({ fn }: props) {
     </button>
   );
 }
-
 export default PlayAgain;

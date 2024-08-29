@@ -3,7 +3,7 @@ interface props {
 }
 function PlayAgain({ fn }: props) {
   return (
-    <button className='bg-slate-400 p-4 rounded-xl' onClick={() => fn()}>
+    <button className="bg-slate-400 p-4 rounded-xl" onClick={() => fn()}>
       Play Again!
     </button>
   );
